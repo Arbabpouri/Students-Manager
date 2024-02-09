@@ -1,3 +1,9 @@
+/*
+                                                            in the name of god;
+                                                this app developed by mohammad mahdi arbabpouri;
+                    For Professor Morteza Yousef Saneti at Bo Ali Sina University, Tuysarkan Faculty, Computer Basics Project;
+*/
+
 #include <stdio.h>
 #include "modules/menus.c"
 
@@ -16,3 +22,5 @@ int main(void)
     return 0; // end
 
 } // end main function
+
+// end :)

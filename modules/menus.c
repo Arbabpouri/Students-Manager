@@ -1,9 +1,3 @@
-/*
-                                                            in the name of god;
-                                                this app developed by mohammad mahdi arbabpouri;
-                    For Professor Morteza Yousef Saneti at Bo Ali Sina University, Tuysarkan Faculty, Computer Basics Project;
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "./functions.c"
