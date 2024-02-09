@@ -1,2 +1,2 @@
 # Students Manager With C Programming Language
-**please give me star:star:**
+**please give me star⭐️**
