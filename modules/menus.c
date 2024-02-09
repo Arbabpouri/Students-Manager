@@ -1,7 +1,7 @@
 /*
                                                             in the name of god;
                                                 this app developed by mohammad mahdi arbabpouri;
-                                            for ostad sanati in bu ali sina university, toyserkan college;
+                    For Professor Morteza Yousef Saneti at Bo Ali Sina University, Tuysarkan Faculty, Computer Basics Project;
 */
 
 #include <stdio.h>
