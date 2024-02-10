@@ -712,11 +712,12 @@ void change_student_grades_menu(const unsigned int stn)
 
 void print_grades_with_name(void)
 {
-    char *name;
+    char name[25];
     set_color(GREEN);
     fprintf(stdout, "%s: ", "please enter first name");
     set_color(YELLOW);
     fscanf(stdin, "%s", name);
+    name[25] = '\0';
     unsigned int len;
     grade *grades = get_grades_with_name(name, &len);
 
