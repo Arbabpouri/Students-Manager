@@ -595,7 +595,7 @@ void remove_student_grade_menu(const unsigned int stn)
         printf("%s", "select number -> ");
         fscanf(stdin, "%d", &select);
 
-        if ((select != cancel) && (select > 0 && select <= delete_all))
+        if (select > 0 && select <= delete_all)
         {
 
             if (select == delete_all)
@@ -667,7 +667,7 @@ void change_student_grades_menu(const unsigned int stn)
         printf("%s", "select number -> ");
         fscanf(stdin, "%d", &select);
 
-        if ((select != i) && (select > 0 && select < len))
+        if (select > 0 && select <= cancel - 1)
         {
 
             while (!feof(stdin))
