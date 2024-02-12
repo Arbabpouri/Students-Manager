@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "./functions.c"
 
-
 // start define functions prototypes
 
 void students_menu(void);
@@ -166,7 +165,7 @@ void add_student_menu(void)
 {
     // this function for get information for pas to add_student function to add to students.txt
     student student;
-    
+
     set_color(GREEN);
     printf("%s", "enter first name -> ");
     set_color(RED);
@@ -411,24 +410,21 @@ void grades_menu(void)
         {
             stn = get_stn();
 
-            if (select != 1)
+            unsigned int result = search_student_in_students_with_stn(stn);
+
+            if (result == STUDENT_NOT_FOUND)
             {
-                unsigned int result = search_student_in_students_with_stn(stn);
-
-                if (result == STUDENT_NOT_FOUND)
-                {
-                    puts("this stn not found in students list, in first section add new student with this stn so back to this part");
-                    return;
-                } // end if
-
-                result = search_student_in_grades_with_stn(stn);
-                if (result == STUDENT_NOT_FOUND)
-                {
-                    puts("this stn not found in students list, in first section add grade student with this stn so back to this part");
-                    return;
-                }
+                puts("this stn not found in students list, in first section add new student with this stn so back to this part");
+                return;
             } // end if
-        }     // end if
+
+            result = search_student_in_grades_with_stn(stn);
+            if (result == STUDENT_NOT_FOUND)
+            {
+                puts("this stn not found in students list, in first section add grade student with this stn so back to this part");
+                return;
+            }
+        } // end if
 
         switch (select)
         {
@@ -741,11 +737,12 @@ void print_grades_with_name(void)
 void print_faild_grades_with_name(void)
 {
 
-    char *name;
+    char name[25];
     set_color(BLUE);
     fprintf(stdout, "%s : ", "please enter first name");
     set_color(CYAN);
     fscanf(stdin, "%s", name);
+    name[25] = '\0';
     unsigned int len;
     unsigned int number = 1;
 
@@ -826,6 +823,7 @@ void print_students_who_faild_grades_lesson_with_name(void)
     unsigned int len;
     stn_grade *grades = get_students_lesson_with_name(name, &len);
     stn_grade informations;
+    bool is_printed = false;
 
     if (len <= 0)
     {
@@ -836,18 +834,18 @@ void print_students_who_faild_grades_lesson_with_name(void)
     for (int i = 0; i < len; i++)
     {
         informations = grades[i];
-
         if (informations.grade.score < 10.0)
         {
-            printf("student with stn : %u and score : %f oftad\n", informations.stn, informations.grade.score);
+            printf("student with stn : %u and score : %f \n", informations.stn, informations.grade.score);
+            is_printed = true;
         } // end if
-        else
-        {
-            len--;
-        }
+
     } // end for
 
-    printf("%s %u\n", "number :", len);
+    if (!is_printed)
+    {
+        puts("not found");
+    } // end if
 
     return;
 }
@@ -856,7 +854,7 @@ void print_students_who_passed_lesson_z_with_score_x_menu(void)
 {
 
     char lesson_name[25];
-    fprintf(stdout, "%s : ", "please enter new lesson name");
+    fprintf(stdout, "%s : ", "please enter lesson name");
     fscanf(stdin, "%s", lesson_name);
     lesson_name[25] = '\0';
 

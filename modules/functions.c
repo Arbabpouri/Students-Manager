@@ -12,6 +12,9 @@
 
 // ------------------------------------------------------------ functions for all -------------------------------------------------------
 
+unsigned int delete_student_grades(const unsigned int stn);
+
+
 void next_line(FILE *file)
 {
     int ch = '-';
@@ -185,10 +188,14 @@ unsigned int remove_student(unsigned int stn)
 
     } // end while
 
+
     fclose(stu_file);
     fclose(update_file);
     remove(STUDENTS_FILE);
     rename(UPDATE_FILE, STUDENTS_FILE);
+
+    delete_student_grades(stn);
+
 
     return OK;
 } // end remove_student function
@@ -262,7 +269,6 @@ unsigned int change_students(const unsigned int stn, enum student_change_informa
             } // end switch
         }     // end if
         set_color(GREEN);
-        fprintf(stdout, "%s,%s,%u,%u\n", stu.first_name, stu.last_name, stu.stn, stu.age);
         fprintf(update_file, "%s,%s,%u,%u\n", stu.first_name, stu.last_name, stu.stn, stu.age);
 
         if (is_changed)
