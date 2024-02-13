@@ -1376,7 +1376,7 @@ void print_conditionalـstudents(void)
 
         if (result)
         {
-            printf("student with stn : [%u] and first name : [%s] and last name : [%s] with age : [%u], mashrut ast\n", stu.stn, stu.first_name, stu.last_name, stu.age);
+            printf("* - student with stn : [%u] - first name : [%s] - last name : [%s] - age : [%u], * mashrut ast * - *\n", stu.stn, stu.first_name, stu.last_name, stu.age);
         } // end if
 
     } // end while
@@ -1409,7 +1409,7 @@ void print_students_with_avarage(void)
 
         avarage = get_avarage(grades, len);
 
-        printf("first name : [%s], last name : [%s], stn : [%u], age : [%u], avarage : [%f]\n", stu.first_name, stu.last_name, stu.stn, stu.age, avarage);
+        printf("first name : [%s] - last name : [%s] - stn : [%u] - age : [%u] - avarage : [%f] - *\n", stu.first_name, stu.last_name, stu.stn, stu.age, avarage);
 
     } // end while
 }
@@ -1438,7 +1438,7 @@ void print_subject_without_failed(void)
         if (lesson_inf.failed == 0)
         {
             set_color(YELLOW);
-            printf("lesson : [%s] without failed\n", lesson_inf.name);
+            printf("* - lesson : [%s] without failed - *\n", lesson_inf.name);
         } // end if
 
     } // end for
@@ -1456,7 +1456,7 @@ void print_subject_name_and_students_avarage_score(void)
     if (len <= 0)
     {
         set_color(RED);
-        puts("lessons not found");
+        puts("* lessons not found *");
         return;
     } // end if
 
@@ -1465,7 +1465,7 @@ void print_subject_name_and_students_avarage_score(void)
 
         lesson_inf = lessons[i];
         set_color(PURPLE);
-        printf("lesson name : [%s] , avarage score : [%f]\n", lesson_inf.name, lesson_inf.avarage);
+        printf("* - lesson name : [%s] - avarage score : [%f] - *\n", lesson_inf.name, lesson_inf.avarage);
 
     } // end for
 }
@@ -1509,7 +1509,7 @@ void print_students_which_passed_lesson_z_with_score_x(char *lesson_name, float 
             if (result == STUDENT_ALREADY_EXIST)
             {
                 set_color(CYAN);
-                printf("first name : [%s], last name : [%s], stn : [%u], age : [%u]\n", stu.first_name, stu.last_name, stu.stn, stu.age);
+                printf("* - first name : [%s] - last name : [%s] - stn : [%u] - age : [%u] - *\n", stu.first_name, stu.last_name, stu.stn, stu.age);
                 is_printed = true;
             } // end if
 

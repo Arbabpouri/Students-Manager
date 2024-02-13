@@ -412,16 +412,18 @@ void grades_menu(void)
 
             unsigned int result = search_student_in_students_with_stn(stn);
 
+            
+
             if (result == STUDENT_NOT_FOUND)
             {
-                puts("this stn not found in students list, in first section add new student with this stn so back to this part");
+                puts("* - this stn not found in students list, in first section add new student with this stn so back to this part");
                 return;
             } // end if
 
             result = search_student_in_grades_with_stn(stn);
-            if (result == STUDENT_NOT_FOUND)
+            if (result == STUDENT_NOT_FOUND && select != 1)
             {
-                puts("this stn not found in students list, in first section add grade student with this stn so back to this part");
+                puts("* - this stn not found in students list, in first section add grade student with this stn so back to this part");
                 return;
             }
         } // end if
@@ -489,7 +491,7 @@ void grades_menu(void)
 
         default:
             set_color(RED);
-            puts("bad select, please try agein");
+            puts("* - bad select, please try agein - *");
             show = 0;
             break;
         } // end switch
@@ -515,7 +517,7 @@ void add_student_grades_menu(const unsigned int stn)
         while (1)
         {
             set_color(PURPLE);
-            printf("%s", "enter lesson name : ");
+            printf("%s", "* - enter lesson name : ");
             fscanf(stdin, "%25s", new_grade.name);
 
             if (search_grade_name_in_grades(stn, new_grade.name) == LESSON_NOT_FOUND)
@@ -525,27 +527,27 @@ void add_student_grades_menu(const unsigned int stn)
             else
             {
                 set_color(RED);
-                puts("lesson with this name in already exist");
+                puts("* - lesson with this name in already exist - *");
             }
         }
         // 0 < x <= 4
         while (!(new_grade.unit > 0 && new_grade.unit <= 4))
         {
             set_color(BLUE);
-            printf("%s", "unit : ");
+            printf("%s", "* - unit : ");
             fscanf(stdin, "%u", &new_grade.unit);
         }
 
         while (!(new_grade.score >= 0.0 && new_grade.score <= 20.0))
         {
             set_color(CYAN);
-            printf("%s", "score : ");
+            printf("%s", "* - score : ");
             fscanf(stdin, "%f", &new_grade.score);
         }
 
         unsigned int result = add_grade(stn, new_grade);
         set_color(YELLOW);
-        printf("%s", "if ended send 0 else 1 : ");
+        printf("%s", " * - if ended send 0 else 1 -> ");
         fscanf(stdin, "%u", &cancel);
     }
 
@@ -568,14 +570,14 @@ void remove_student_grade_menu(const unsigned int stn)
     if (len <= 0)
     {
         set_color(RED);
-        puts("grades not found");
+        puts("* - grades not found - *");
         return;
     } // end if
 
     for (i = 0; i < len; i++)
     {
         set_color(GREEN);
-        printf("[%d] - name : %s, unit : %d, score : %f .\n", i + 1, grades[i].name, grades[i].unit, grades[i].score);
+        printf("* - [%d] - name : [%s] - unit : [%d] - score : [%f] . - *\n", i + 1, grades[i].name, grades[i].unit, grades[i].score);
     } // end for
 
     set_color(RED);
@@ -649,7 +651,7 @@ void change_student_grades_menu(const unsigned int stn)
     for (i = 0; i < len; i++)
     {
         set_color(GREEN);
-        printf("[%d] - name : %s, unit : %d, score : %f .\n", i + 1, grades[i].name, grades[i].unit, grades[i].score);
+        printf("* - [%d] - name : [%s] - unit : [%d] - score : [%f] . - *\n", i + 1, grades[i].name, grades[i].unit, grades[i].score);
     } // end for
 
     set_color(BLUE);
@@ -679,7 +681,7 @@ void change_student_grades_menu(const unsigned int stn)
                     if (result == OK)
                     {
                         set_color(GREEN);
-                        puts("score was changed");
+                        puts("* score was changed *");
                         return;
                     } // end if
                     set_color(RED);
@@ -691,7 +693,7 @@ void change_student_grades_menu(const unsigned int stn)
                 else
                 {
                     set_color(RED);
-                    puts("score >= 0 and score <= 20");
+                    puts("[score >= 0 and score <= 20]");
                 } // end else
             }     // end while
             set_color(RED);
@@ -710,7 +712,7 @@ void print_grades_with_name(void)
 {
     char name[25];
     set_color(GREEN);
-    fprintf(stdout, "%s: ", "please enter first name");
+    fprintf(stdout, "%s: ", " * - please enter first name");
     set_color(YELLOW);
     fscanf(stdin, "%s", name);
     name[25] = '\0';
@@ -720,14 +722,14 @@ void print_grades_with_name(void)
     if (len <= 0)
     {
         set_color(RED);
-        puts("grades not found");
+        puts("* - grades not found - *");
         return;
     } // end if
 
     for (int i = 0; i < len; i++)
     {
         set_color(GREEN);
-        printf("[%d] - name : %s, unit : %d, score : %f .\n", i + 1, grades[i].name, grades[i].unit, grades[i].score);
+        printf("* - [%d] - name : [%s] - unit : [%d] - score : [%f] . - *\n", i + 1, grades[i].name, grades[i].unit, grades[i].score);
     } // end for
 
     return;
@@ -751,7 +753,7 @@ void print_faild_grades_with_name(void)
     if (len <= 0)
     {
         set_color(RED);
-        puts("grades not found");
+        puts("* - grades not found - *");
         return;
     } // end if
 
@@ -760,7 +762,7 @@ void print_faild_grades_with_name(void)
         if (grades[i].score < 10)
         {
             set_color(RED);
-            printf("[%u] - name : %s, unit : %d, score : %f .\n", number, grades[i].name, grades[i].unit, grades[i].score);
+            printf("* - [%u] - name : [%s] - unit : [%d] - score : [%f] . - *\n", number, grades[i].name, grades[i].unit, grades[i].score);
             number++;
         } // end if
 
@@ -795,7 +797,7 @@ void print_avarage_grades_student_with_name(void)
     if (len <= 0)
     {
         set_color(RED);
-        puts("grades not found");
+        puts("* - grades not found - *");
         return;
     } // end if
 
@@ -816,7 +818,7 @@ void print_avarage_grades_student_with_name(void)
 void print_students_who_faild_grades_lesson_with_name(void)
 {
     char name[25];
-    fprintf(stdout, "%s : ", "please enter new lesson name");
+    fprintf(stdout, "%s : ", "please enter lesson name");
     fscanf(stdin, "%s", name);
     name[25] = '\0';
 
@@ -836,7 +838,7 @@ void print_students_who_faild_grades_lesson_with_name(void)
         informations = grades[i];
         if (informations.grade.score < 10.0)
         {
-            printf("student with stn : %u and score : %f \n", informations.stn, informations.grade.score);
+            printf("* - student with stn : [%u] - score : [%f] - *\n", informations.stn, informations.grade.score);
             is_printed = true;
         } // end if
 
@@ -881,7 +883,7 @@ void print_avarage_lesson_x_in_college(void)
 
     if (result == OK)
     {
-        printf("%s %f\n", "avarage :", avarage);
+        printf("%s %f\n", "* - avarage :", avarage);
         return;
     } // end if
 
